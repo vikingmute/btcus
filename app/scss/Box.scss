@@ -1,0 +1,68 @@
+@import './var.scss';
+
+.box-list {
+  width: 990px;
+  margin: 50px auto;
+  .box-component {
+    width: 310px;
+    box-sizing: border-box;
+    display: inline-block;
+    border: 1px solid #efefef;
+    h1 {
+
+      height: 50px;
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      font-weight: normal;
+      line-height: 50px;
+    }
+    h3 {
+      font-size: 14px;
+      font-weight: normal;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    .button-group {
+      margin-bottom: 20px;
+      input {
+        font-size: 12px;
+        width: 100px;
+        border-radius: 5px;
+        height: 30px;
+        line-height: 30px;
+        border:none;
+      }
+      input:first-child {
+        margin-right: 30px;
+      }
+    }
+
+  }
+  .blue {
+    margin: 0 30px;
+    h1 {
+      background: $blue;
+    }
+    input {
+      background: $blue;
+      color: #fff;
+    }
+    h2 {
+      font-weight: bold;
+    }
+  }
+  .gray {
+    h1 {
+      background: $navblue;
+    }
+    input {
+      background: $navblue;
+      color: #fff;
+    }
+    h2 {
+      font-weight: normal;
+    }
+  }
+}
