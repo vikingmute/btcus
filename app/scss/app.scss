@@ -4,12 +4,18 @@
 * {
   font-family: 'Helvetica Neue', 'Segoe UI', Verdana, Tahoma, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
 }
 ::selection {
     background: $blue;
     color: #fff;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -24,11 +30,133 @@ html {
   font-size: 14px;
   color: $base;
 }
+header {
+  height: 3rem;
+  line-height: 3rem;
+  padding-left: 3rem;
+  color: $blue;
+  text-align: center;
+  position: relative;
+  h2 {
+    text-indent: -999rem;
+    width: 64px;
+    height: 64px;
+    background-image: url('../imgs/logo.png');
+    margin: 2.5rem auto;
+  }
+}
+footer {
+  text-align: center;
+  margin: 4rem;
+}
+.tooltip-component {
+  position: absolute;
+  @include arrow_box(110px, 5px);
+  h4 {
+    margin: 0;
+    color: $blue;
+    font-weight: normal;
+  }
+  p {
+    padding: 2px;
+    margin: 0;
+    font-weight: bold;
+    .currency {
+      font-weight: normal;
+    }
+  }
+}
+@include spinner;
 .container {
-  border: 1px solid #efefef;
-  border-radius: 5px;
-  width: 1118px;
+  width: 60%;
   margin: 0 auto;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 3rem;
+  .intro {
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .input-component, .output-component, .equal, .arrow {
+    display: inline-block;
+    position: relative;
+    .currency {
+      @include currency;
+    }
+  }
+  .arrow {
+    margin-left: 1rem;
+    width: 1rem;
+    height: 1rem;
+  }
+  @include arrow(-45deg, $green, down);
+  @include arrow(135deg, $red, up);
+  .equal {
+    font-size: 1.4rem;
+    margin: 0 1rem;
+  }
+  .input-component {
+    .flag-icon {
+      @include flag(30px, 30px);
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-image: url('../imgs/bitcoin.png');
+    }
+    input {
+      @include binput(12rem);
+    }
+  }
+  .chart-title {
+    margin: 4rem 0 2rem 0;
+  }
+  .output-component {
+    .flag-icon {
+      @include flag(44px, 30px);
+    }
+    > .flag-icon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    @include national;
+    input {
+      @include binput(17rem);
+    }
+    .modal-hide {
+      display: none;
+    }
+    .modal-show {
+      display: block;
+    }
+    .modal-component {
+      position: absolute;
+      top: 50px;
+      left: -50px;
+      @include arrow_box(15rem, 1rem);
+    }
+    .flag-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li {
+        display: inline-block;
+      }
+      a {
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+        transition: all 0.5s ease-in;
+        .text {
+          display: block;
+          color: $blue;
+        }
+        &:hover {
+          background: #efefef;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
 }
