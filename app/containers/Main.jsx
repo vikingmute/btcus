@@ -11,11 +11,19 @@ const propTypes = {
 };
 class Main extends React.Component {
   componentDidMount() {
-    const { fetchLastest, fetchHistory } = this.props.actions;
+    const { fetchLastest, fetchHistory, fetchCurrency, getLocalCurrency } = this.props.actions;
     const { currency } = this.props.state.current;
-    //  first time fetch both current and history data
+    //  first time fetch both current and history data and all the currency data
     fetchLastest(currency);
     fetchHistory(currency);
+    // check if local stroage is there
+    if (localStorage.getItem('currencyList') === null) {
+      fetchCurrency();
+    } else {
+      const currencyData = JSON.parse(localStorage.getItem('currencyList'));
+      getLocalCurrency(currencyData);
+    }
+
     setInterval(() => {
       const newcurrency = this.props.state.current.currency;
       fetchLastest(newcurrency);
@@ -23,19 +31,12 @@ class Main extends React.Component {
   }
 
   render() {
-    const flagGroup = [
-      { currency: 'CNY' },
-      { currency: 'USD' },
-      { currency: 'JPY' },
-      { currency: 'GBP' },
-      { currency: 'CHF' },
-      { currency: 'EUR' }
-    ];
 
     const { changeCurreny, changeValue, changeTotal } = this.props.actions;
     const { toggleModal, showTooltip, hideTooltip } = this.props.actions;
     const { currency, amount, total, arrow, modal } = this.props.state.current;
     const { data, loaded, tooltip, tipData } = this.props.state.history;
+    const { list } = this.props.state.currency;
     const currentLoading = this.props.state.current.loading;
     const historyLoading = this.props.state.history.loading;
     const historyData = [data.map(item => {
@@ -46,9 +47,9 @@ class Main extends React.Component {
       changeTotal,
       currency,
       changeCurreny,
-      flagGroup,
       modal,
-      toggleModal
+      toggleModal,
+      currencyList: list
     };
     const lineChartProp = {
       xType: 'text',
@@ -90,7 +91,7 @@ class Main extends React.Component {
         </header>
         <section className="container">
           <div className="intro">
-            Btc.us 是一个简单的比特币计算器，支持多种货币，每分钟更新。
+            Btc.us 是一个简单的比特币计算器，支持 <b>167</b> 种货币类型，每分钟更新。
             <br /> 点击右侧国旗可以切换当前货币类型。
           </div>
           <div className="rate-area">
@@ -106,7 +107,13 @@ class Main extends React.Component {
           </div>
         </section>
         <footer>
-          2016 Btc.us
+          <ul>
+            <li>Hand coded by <a href="https://github.com/vikingmute/btcus">vikingmute</a></li>
+            <li>
+                Powered by <a href="http://www.coindesk.com/price/">CoinDesk</a> &
+                Icons by <a href="http://www.flaticon.com/packs/countrys-flags">Freepik</a>
+            </li>
+          </ul>
         </footer>
       </div>
     );

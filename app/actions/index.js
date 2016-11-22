@@ -21,6 +21,24 @@ export function fetchLastest(currency = 'CNY') {
     payload: Async.getLastestPrice(currency)
   };
 }
+
+export const FETCH_CURRENCY = 'FETCH_CURRENCY';
+
+export function fetchCurrency() {
+  return {
+    type: FETCH_CURRENCY,
+    payload: Async.getCurrencyData()
+  };
+}
+
+export const GET_LOCAL_CURRENCY = 'GET_LOCAL_CURRENCY';
+
+export function getLocalCurrency(data) {
+  return {
+    type: GET_LOCAL_CURRENCY,
+    data
+  };
+}
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export function toggleModal() {
   return {

@@ -1,6 +1,7 @@
 $blue: #4E74FF;
 $base: #697395;
 $deepblue: #172033;
+$lightblue: #f6f9fc;
 $navblue: #7D97AD;
 $yellow: #FFF200;
 $green: #36a840;
@@ -15,6 +16,14 @@ $deepgray: #ccc;
   font-size: 1.4rem;
   border-radius: 3px;
   text-align: right;
+  border: solid 1px $gray;
+}
+@mixin sinput($width) {
+  width: $width;
+  padding: .7rem;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  text-align: left;
   border: solid 1px $gray;
 }
 @mixin currency {
@@ -34,19 +43,37 @@ $deepgray: #ccc;
 }
 @mixin national {
   .flag-CNY {
-    background-image: url('../imgs/China.png');
+    background-image: url('../imgs/CNY.png') !important;
   }
   .flag-USD {
-    background-image: url('../imgs/USA.png');
+    background-image: url('../imgs/USD.png') !important;
+  }
+  .flag-AUD {
+    background-image: url('../imgs/AUD.png') !important;
+  }
+  .flag-CAD {
+    background-image: url('../imgs/CAD.png') !important;
   }
   .flag-JPY {
-    background-image: url('../imgs/Japan.png');
+    background-image: url('../imgs/JPY.png') !important;
   }
   .flag-GBP {
-    background-image: url('../imgs/UK.png');
+    background-image: url('../imgs/GBP.png') !important;
   }
   .flag-CHF {
-    background-image: url('../imgs/Swiss.png');
+    background-image: url('../imgs/CHF.png') !important;
+  }
+  .flag-EUR {
+    background-image: url('../imgs/EUR.png') !important;
+  }
+  .flag-HKD {
+    background-image: url('../imgs/HKD.png') !important;
+  }
+  .flag-KRW {
+    background-image: url('../imgs/KRW.png') !important;
+  }
+  .flag-KPW {
+    background-image: url('../imgs/KPW.png') !important;
   }
 }
 @mixin arrow_box($width, $padding) {

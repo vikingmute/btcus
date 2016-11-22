@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 const CURRENT_API_URL = '/api/current/';
 const HISTORY_API_URL = '/api/history/';
+const CURRENCY_API_URL = '/api/currency/';
 
 function defaultHeaders(customHeader = null) {
   const headers = new Headers();
@@ -37,4 +38,8 @@ export function getLastestPrice(currency = 'USD') {
 
 export function getHistoryData(currency = 'USD') {
   return getJSON(`${HISTORY_API_URL}${currency}`);
+}
+
+export function getCurrencyData() {
+  return getJSON(CURRENCY_API_URL);
 }

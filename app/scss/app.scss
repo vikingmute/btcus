@@ -10,7 +10,13 @@
     background: $blue;
     color: #fff;
 }
-
+a {
+  color: $blue;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -42,12 +48,17 @@ header {
     width: 64px;
     height: 64px;
     background-image: url('../imgs/logo.png');
-    margin: 2.5rem auto;
+    margin: 2.5rem auto 0;
   }
 }
 footer {
   text-align: center;
-  margin: 4rem;
+  margin: 2rem;
+  border-top: 1px solid #efefef;
+  padding: 2rem;
+  ul {
+    list-style-type: none;
+  }
 }
 .tooltip-component {
   position: absolute;
@@ -113,11 +124,11 @@ footer {
   }
   .output-component {
     .flag-icon {
-      @include flag(44px, 30px);
+      @include flag(30px, 30px);
     }
     > .flag-icon {
       position: absolute;
-      top: 10px;
+      top: 12px;
       left: 10px;
     }
     @include national;
@@ -133,8 +144,42 @@ footer {
     .modal-component {
       position: absolute;
       top: 50px;
-      left: -50px;
-      @include arrow_box(15rem, 1rem);
+      left: -110px;
+      @include arrow_box(20rem, 1rem);
+    }
+    .typeahead-component {
+      input {
+        @include sinput(17rem);
+      }
+      .typeahead-list {
+        list-style-type: none;
+        padding-left: .7rem;
+        li {
+          height: 50px;
+          line-height: 50px;
+          text-align: left;
+          border-bottom: 1px solid #efefef;
+          cursor: pointer;
+          overflow: hidden;
+          p {
+            margin: 0;
+          }
+          .flag {
+            vertical-align: middle;
+            margin: 0 10px;
+            background-image: url('../imgs/default.png');
+            @include flag(30px, 30px);
+          }
+          .ccode {
+            color: $blue;
+            //font-weight: 200;
+            margin-right: 5px;
+          }
+          &:hover, &.active {
+            background: $lightblue;
+          }
+        }
+      }
     }
     .flag-list {
       list-style-type: none;

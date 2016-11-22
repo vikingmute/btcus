@@ -26,6 +26,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.21.0",
     "node-sass": "^3.8.0",
+    "qiniu": "^6.1.13",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
@@ -33,6 +34,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "babel-runtime": "^6.18.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.1.0",

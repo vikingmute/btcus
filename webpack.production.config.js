@@ -13,9 +13,9 @@ module.exports= {
   },
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.js'
+    publicPath: 'http://ogbe0c1nr.bkt.clouddn.com/',
+    filename: '[name]-[hash].js'
   },
-
   resolve: {
     extensions: ['', '.js', '.jsx'],
     root: APP_PATH
