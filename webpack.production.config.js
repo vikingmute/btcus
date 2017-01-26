@@ -9,7 +9,7 @@ var APP_PATH = path.resolve(ROOT_PATH, 'app');
 module.exports= {
   entry: {
     app: path.resolve(APP_PATH, 'app.jsx'),
-    vendors: ['react']
+    vendors: ['react', 'react-dom']
   },
   output: {
     path: BUILD_PATH,
@@ -39,10 +39,15 @@ module.exports= {
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-    new ExtractTextPlugin("styles.css"),
+    new webpack.optimize.CommonsChunkPlugin('vendors', '[name]-[hash].js'),
+    new ExtractTextPlugin('bundle-[chunkhash].css', {
+        allChunks: true
+    }),
     new HtmlwebpackPlugin({
-      title: 'Btc.us | simple bitcoin calculator'
+      filename: 'index.html',
+      title: 'Btc.us | simple bitcoin calculator',
+      inject: 'body',
+      template: './index.html'
     })
   ]
 }

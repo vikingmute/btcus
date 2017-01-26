@@ -17,7 +17,7 @@ class BitInput extends React.Component {
     return (
       <div className="input-component">
         <span className="flag-icon"></span>
-        <input ref="amount" type="number" value={this.props.amount} onChange={this.changeValue} />
+        <input ref="amount" type="number" lang="nb" value={this.props.amount} onChange={this.changeValue} />
         <span className="currency">BTC</span>
       </div>
     );

@@ -26,7 +26,7 @@ class Output extends React.Component {
     return (
       <div className="output-component">
         <span className={klass} onClick={toggleModal}></span>
-        <input type="number" ref="output" value={total} onChange={this.changeTotal} />
+        <input type="number" ref="output" value={total} lang="nb" onChange={this.changeTotal} />
         <span className="currency">{currency}</span>
         <Modal list={currencyList} changeCurreny={changeCurreny} status={modal} />
       </div>

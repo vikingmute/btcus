@@ -60,7 +60,10 @@ module.exports= {
   },
   plugins: [
     new HtmlwebpackPlugin({
-      title: 'My first react app'
+      filename: 'index.html',
+      title: 'Btc.us | simple bitcoin calculator',
+      inject: 'body',
+      template: './index.html'
     })
   ]
 }

@@ -2,7 +2,7 @@
 @import "var.scss";
 
 * {
-  font-family: 'Helvetica Neue', 'Segoe UI', Verdana, Tahoma, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  font-family:  'Helvetica Neue', 'Segoe UI', Verdana, Tahoma, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
@@ -44,11 +44,13 @@ header {
   text-align: center;
   position: relative;
   h2 {
-    text-indent: -999rem;
-    width: 64px;
-    height: 64px;
-    background-image: url('../imgs/logo.png');
+    font-weight: bold;
+    font-size: 30px;
     margin: 2.5rem auto 0;
+    width: 150px;
+    a {
+      font-family: 'Lobster', cursive !important;
+    }
   }
 }
 footer {
@@ -79,7 +81,7 @@ footer {
 }
 @include spinner;
 .container {
-  width: 60%;
+  width: 650px;
   margin: 0 auto;
   text-align: center;
   margin-top: 3rem;
@@ -88,6 +90,12 @@ footer {
     font-weight: normal;
     line-height: 2rem;
     margin-bottom: 2.5rem;
+    text-align: left !important;
+    span {
+      font-family: 'Lobster', cursive;
+      color: $blue;
+      font-weight: bold;
+    }
   }
   .input-component, .output-component, .equal, .arrow {
     display: inline-block;
@@ -203,5 +211,49 @@ footer {
         }
       }
     }
+  }
+}
+// for iphone 6 375
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+  .container {
+    width: 300px;
+    .equal {
+      display: block;
+      margin: 1rem;
+    }
+  }
+  .modal-component {
+    left: 0 !important;
+  }
+}
+// for larger phone (376 - 768) 6plus
+@media only screen and (min-width: 376px) and (max-width: 767px) {
+  .container {
+    width: 400px;
+  }
+}
+
+// for ipad 768 - 1024 ()
+/* different techniques for iPad screening */
+@media only screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait) {
+  /* For portrait layouts only */
+  .container {
+    width: 650px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) and (orientation:landscape) {
+  /* For landscape layouts only */
+  .container {
+    width: 650px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .container {
+    width: 650px;
   }
 }

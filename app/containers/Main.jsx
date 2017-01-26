@@ -57,7 +57,7 @@ class Main extends React.Component {
       grid: true,
       dataPoints: true,
       verticalGrid: true,
-      width: 800,
+      width: 650,
       height: 300,
       mouseOverHandler: showTooltip,
       mouseOutHandler: hideTooltip,
@@ -86,13 +86,13 @@ class Main extends React.Component {
     return (
       <div className="main">
         <header>
-          <h2>BTC.us</h2>
+          <h2><a href="http://yiju.us">1BTC.us</a></h2>
           {loader}
         </header>
         <section className="container">
           <div className="intro">
-            Btc.us 是一个简单的比特币计算器，支持 <b>167</b> 种货币类型，每分钟更新。
-            <br /> 点击右侧国旗可以切换当前货币类型。
+            <span>1BTC.us</span> is a simple bitcoin calculator, support <b>167</b> currencies, update every minute.
+            <br /> Click the <b>right flag</b> to change current currency.
           </div>
           <div className="rate-area">
             <BitInput amount={amount} changeValue={changeValue} />
@@ -100,7 +100,7 @@ class Main extends React.Component {
             <Output {...outputProp} />
             <div className={rateArrow}></div>
           </div>
-          <h3 className="chart-title">比特币价格走势</h3>
+          <h3 className="chart-title">Bitcoin price in last 20 days</h3>
           <div className="chart-area">
             {lineChart}
             {showTool}
