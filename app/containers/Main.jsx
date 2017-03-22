@@ -86,12 +86,12 @@ class Main extends React.Component {
     return (
       <div className="main">
         <header>
-          <h2><a href="http://yiju.us">1BTC.us</a></h2>
+          <h2><a href="http://btc1.us">BTC1.us</a></h2>
           {loader}
         </header>
         <section className="container">
           <div className="intro">
-            <span>1BTC.us</span> is a simple bitcoin calculator, support <b>167</b> currencies, update every minute.
+            <span>BTC1.us</span> is a simple bitcoin calculator, support <b>167</b> currencies, update every minute.
             <br /> Click the <b>right flag</b> to change current currency.
           </div>
           <div className="rate-area">

@@ -61,7 +61,7 @@ module.exports= {
   plugins: [
     new HtmlwebpackPlugin({
       filename: 'index.html',
-      title: 'Btc.us | simple bitcoin calculator',
+      title: 'Btc1.us | simple bitcoin calculator',
       inject: 'body',
       template: './index.html'
     })
