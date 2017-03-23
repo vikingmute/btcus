@@ -13,7 +13,7 @@ module.exports= {
   },
   output: {
     path: BUILD_PATH,
-    publicPath: 'http://ogbe0c1nr.bkt.clouddn.com/',
+    publicPath: 'https://on7nmjfdn.qnssl.com',
     filename: '[name]-[hash].js'
   },
   resolve: {
