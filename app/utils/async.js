@@ -1,8 +1,10 @@
 import fetch from 'isomorphic-fetch';
 
-const CURRENT_API_URL = '/api/current/';
-const HISTORY_API_URL = '/api/history/';
-const CURRENCY_API_URL = '/api/currency/';
+const CURRENT_API_URL = '/api/current';
+const HISTORY_API_URL = '/api/history';
+const CURRENCY_API_URL = '/api/currency';
+const DAY_API_URL = '/api/day';
+const LIST_API_URL = '/api/full';
 
 function defaultHeaders(customHeader = null) {
   const headers = new Headers();
@@ -31,13 +33,18 @@ export function postJSON(url, data = null, customHeader = null, opts = {}) {
   const options = Object.assign(defaultOpts, opts);
   return fetch(url, options).then(res => res.json());
 }
-
-export function getLastestPrice(currency = 'USD') {
-  return getJSON(`${CURRENT_API_URL}${currency}`);
+export function getListPrice(currency = 'CNY', coins = ['BTC']) {
+  const coinList = coins.join('.');
+  return getJSON(`${LIST_API_URL}/${coinList}-${currency}`);
 }
-
-export function getHistoryData(currency = 'USD') {
-  return getJSON(`${HISTORY_API_URL}${currency}`);
+export function getCurrentPrice(currency = 'USD', coin = 'BTC') {
+  return getJSON(`${CURRENT_API_URL}/${coin}-${currency}`);
+}
+export function getDayPrice(currency = 'USD', coin = 'BTC', date = '2017-01-01') {
+  return getJSON(`${DAY_API_URL}/${coin}-${currency}/${date}`)
+}
+export function getHistoryData(currency = 'USD', coin = 'BTC', range = 'day') {
+  return getJSON(`${HISTORY_API_URL}/${coin}-${currency}/${range}`);
 }
 
 export function getCurrencyData() {

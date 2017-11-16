@@ -9,7 +9,7 @@ var APP_PATH = path.resolve(ROOT_PATH, 'app');
 module.exports= {
   entry: {
     app: path.resolve(APP_PATH, 'app.jsx'),
-    vendors: ['react', 'react-dom']
+    vendors: ['react', 'react-dom', 'react-redux', 'recharts', 'react-router-dom', 'redux', 'redux-thunk']
   },
   output: {
     path: BUILD_PATH,

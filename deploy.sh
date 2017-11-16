@@ -10,8 +10,7 @@ node upload.js
 
 echo "Finish upload static files to Qiniu, start upload files to VPS" 
 
-
-scp build/index.html root@139.162.47.118:/root/btc/public
+scp build/index.html root@139.162.47.118:/root/btcus/btc/public
 
 echo "Finish upload files to VPS, clean up the build folder"
 

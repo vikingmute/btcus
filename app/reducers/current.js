@@ -1,68 +1,28 @@
-import { CHANGE_VALUE, CHANGE_CURRENCY,
-          CHANGE_TOTAL, FETCH_LASTEST, TOGGLE_MODAL } from '../actions';
+import { FETCHING_HISTORY, FETCHING_CURRENT, FETCHING_CURRENT_DETAIL } from '../actions/current';
+import { fullfilled } from '../utils/helper';
 
 const initialState = {
-  currency: 'CNY',
-  amount: 1,
-  rate: 0,
-  total: 0,
-  loading: false,
-  previous: 0,
-  arrow: null,
-  modal: false
+  selectedCoin: {},
+  history: [],
+  isLoading: false,
+  isLoaded: false,
+  selectedRange: 'day',
+  prevPrice: ''
 };
-function changeTitle(data) {
-  const title = `${data.rate} ${data.currency} | BTC.us`;
-  document.title = title;
-}
-function generateData(payload, state) {
-  const current = payload.current;
-  const previousValue = state.rate;
-  const rate = current.rate_float.toFixed(2);
-  const total = state.amount * rate;
-  const data = {
-    currency: current.code,
-    rate,
-    total,
-    loading: false
-  };
-  if (previousValue) {
-    if (current.rate_float > previousValue) {
-      data.arrow = 'up';
-    } else {
-      data.arrow = 'down';
-    }
-    data.previous = previousValue;
-  }
-  if (state.currency !== data.currency) {
-    data.arrow = null;
-  }
-  return data;
-}
 export default function currentReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_VALUE: {
-      const totalMoney = (action.val * state.rate).toFixed(2);
-      return Object.assign({}, state, { amount: action.val, total: totalMoney });
+    case FETCHING_HISTORY: {
+      return Object.assign({}, state, { isLoading: true, isLoaded: false })
     }
-    case CHANGE_TOTAL: {
-      const amount = (action.val / state.rate).toFixed(2);
-      return Object.assign({}, state, { total: action.val, amount });
+    case fullfilled(FETCHING_HISTORY): {
+      const prevPrice = action.data[0].close
+      return Object.assign({}, state, { history: action.data, selectedRange: action.range, prevPrice })
     }
-    case TOGGLE_MODAL: {
-      return Object.assign({}, state, { modal: !state.modal });
+    case FETCHING_CURRENT_DETAIL: {
+      return Object.assign({}, state, { isLoading: true, selectedCoin: action.coin })
     }
-
-    case `${CHANGE_CURRENCY}_FULFILLED`: {
-      return Object.assign({}, state, { previous: 0, arrow: null });
-    }
-    case `${FETCH_LASTEST}_PENDING`: {
-      return Object.assign({}, state, { loading: true, modal: false });
-    }
-    case `${FETCH_LASTEST}_FULFILLED`: {
-      const data = generateData(action.payload, state);
-      changeTitle(data);
-      return Object.assign({}, state, data);
+    case fullfilled(FETCHING_CURRENT_DETAIL): {
+      return Object.assign({}, state, { isLoading: false, isLoaded: true })
     }
     default: {
       return state;

@@ -2,29 +2,35 @@ import React, { PropTypes } from 'react';
 import Typeahead from './Typeahead';
 
 const propTypes = {
-  flags: PropTypes.array.isRequired,
   changeCurreny: PropTypes.func.isRequired,
-  status: PropTypes.bool.isRequired,
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
+  featureList: PropTypes.array,
 };
 function Modal(props) {
-  const { changeCurreny, status, list } = props;
-  const openStatus = status ? 'modal-open' : 'modal-hide';
-  const klass = `modal-component ${openStatus}`;
+  const { changeCurreny, list, featureList, text } = props;
 
   const featureItems = list.filter((item) => {
-    const pa = /^AUD|CNY|CAD|USD|JPY|GBP|CHF|EUR|HKD$/g;
+    const pa = new RegExp('^' + featureList.join('|') + '$', 'g');
     return pa.test(item.currency);
   });
   function CustomItem(prop) {
     const klassC = `flag-${prop.currency} flag`;
-    return (<p className={prop.currency}>
-      <span className={klassC}></span>
+    let image = ''
+    try  {
+      image = require(`../imgs/${prop.currency}.png`)
+    } catch(e) {
+      image = require('../imgs/default.png')
+    }
+    const style = {
+      backgroundImage: `url(${image})`
+    }
+    return (<p className={`${prop.currency} list-item`}>
+      <span className={klassC} style={style}></span>
       <span className="ccode">{(prop.node) ? prop.node : prop.currency} </span>
       {prop.country}</p>);
   }
   return (
-    <div className={klass}>
+    <div className='modal-component'>
       <div className="arrow_box">
         <Typeahead
           featureItems={featureItems}
@@ -33,6 +39,7 @@ function Modal(props) {
           onSelect={changeCurreny}
           dataKey="currency"
           maxLength={9}
+          text={text}
         />
       </div>
     </div>

@@ -11,7 +11,8 @@ module.exports= {
   },
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/',
   },
 
   //enable dev source map
@@ -24,7 +25,8 @@ module.exports= {
     progress: true,
     proxy: {
       '/api/*': {
-        target: 'http://localhost:3000/'
+        target: 'http://localhost:3000',
+        secure: false,
         /*rewrite: function(req) {
           req.url = req.url.replace(/^\/api/, '');
         }*/
@@ -61,9 +63,9 @@ module.exports= {
   plugins: [
     new HtmlwebpackPlugin({
       filename: 'index.html',
-      title: 'Btc1.us | simple bitcoin calculator',
+      title: 'Btc1.us | Live cryptocurrency prices',
       inject: 'body',
-      template: './index.html'
+      //template: './index.html'
     })
   ]
 }

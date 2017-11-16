@@ -1,6 +1,7 @@
 $blue: #4E74FF;
+$bblue: #3998fc;
 $base: #697395;
-$deepblue: #172033;
+$deepblue: #3389e3;
 $lightblue: #f6f9fc;
 $navblue: #7D97AD;
 $yellow: #FFF200;
@@ -25,6 +26,19 @@ $deepgray: #ccc;
   border-radius: 3px;
   text-align: left;
   border: solid 1px $gray;
+}
+@mixin styledBtn($width, $background, $color, $border, $hover) {
+  width: $width;
+  padding: .7rem;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: solid 1px $border;
+  text-align: center;  
+  background: $background;
+  color: $color;
+  &:hover {
+    background: $hover;
+  }
 }
 @mixin currency {
   font-size: 1.4rem;
@@ -155,11 +169,11 @@ $deepgray: #ccc;
   .spinner {
     width: 6rem;
     height: 3rem;
-    text-align: center;
+    margin: 10rem auto;
     font-size: 10px;
-    position: absolute;
-    top: .5rem;
-    left: 60%;
+    //position: absolute;
+    //top: .5rem;
+    //left: 60%;
   }
 
   .spinner > div {

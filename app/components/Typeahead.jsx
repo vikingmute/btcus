@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 
-
 const propTypes = {
   items: PropTypes.array.isRequired,
   featureItems: PropTypes.array,
@@ -21,9 +20,11 @@ class Typeahead extends React.Component {
       filterItems: props.featureItems ? JSON.parse(JSON.stringify(props.featureItems)) : [],
       inital: true,
       keyIndex: -1,
-      value: ''
+      value: '',
+      displayDropdown: false,
     };
   }
+
   componentWillReceiveProps(nextProps) {
     // update when new featureItems is provided
     if (nextProps.featureItems) {
@@ -64,6 +65,11 @@ class Typeahead extends React.Component {
     if (onChange) {
       onChange(currentPattern);
     }
+  }
+  toggleDropdown(show) {
+    this.setState({
+      displayDropdown: show
+    })
   }
   keySelectCallback(e) {
     let { filterItems, keyIndex } = this.state;
@@ -107,34 +113,36 @@ class Typeahead extends React.Component {
     }
   }
   clickCallback(item) {
-    const newState = Object.assign({}, this.state, { value: item.currency });
+    const newState = Object.assign({}, this.state, { value: item.currency, displayDropdown: false });
     this.setState(newState);
     const { onSelect } = this.props;
     if (onSelect) {
-      onSelect(item.currency, item.country);
+      onSelect(item);
     }
   }
 
   render() {
     let { placeholder, itemTemplate } = this.props;
-    placeholder = placeholder || 'Type anything to start';
-    let { filterItems, value } = this.state;
+    placeholder = placeholder || 'Type currency name to search';
+    let { filterItems, value, displayDropdown } = this.state;
     const Item = itemTemplate;
     let filterList = filterItems.length === 0 ? (<p>No result found</p>) :
       filterItems.map((item, index) =>
         (<li
           key={index}
-          onClick={this.clickCallback.bind(this, item)}
+          onClick={() => {this.clickCallback(item)}}
           className={(item.active ? 'active' : '')}>
           <Item {...item} />
         </li>)
       );
+    const style = displayDropdown ? { display: 'block' } : { display: 'none' }
     return (
       <div className="typeahead-component">
         <input
           ref="pattern"
           value={value}
           onInput={this.changeCallback}
+          onFocus={() => {this.toggleDropdown(true)}}
           placeholder={placeholder}
           onKeyDown={this.keySelectCallback}
         />
