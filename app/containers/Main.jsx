@@ -27,8 +27,8 @@ class Main extends React.Component {
         key: item,
         coin: currentItem.coin,
         currency: global.selectedCurrency.currency,
-        price: currentItem.PRICE.toFixed(2),
-        changePercent: currentItem.CHANGEPCT24HOUR.toFixed(2)
+        price: (currentItem.PRICE * 1).toFixed(2),
+        changePercent: (currentItem.CHANGEPCT24HOUR * 1).toFixed(2)
       }
     })
     const content = list.isFetching ? <Loader /> : <List items={formatListData} />

@@ -14,7 +14,7 @@ const initialState = {
   coinList,
   currencyList: getLocalStorage('allCurrencies') || [],
   selectedCoins: getLocalStorage('selectedCoins') || coinList.slice(0, 5),
-  selectedCurrency: getLocalStorage('selectedCurrency') || { currency: 'CNY', country: 'China' }
+  selectedCurrency: getLocalStorage('selectedCurrency') || { currency: 'USD', country: 'United States Dollar' }
 }
 
 export default function globalReducer(state = initialState, action) {
