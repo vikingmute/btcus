@@ -5,6 +5,7 @@ const HISTORY_API_URL = '/api/history';
 const CURRENCY_API_URL = '/api/currency';
 const DAY_API_URL = '/api/day';
 const LIST_API_URL = '/api/full';
+const EXCHANGE_API_URL = '/api/exchange';
 
 function defaultHeaders(customHeader = null) {
   const headers = new Headers();
@@ -46,7 +47,9 @@ export function getDayPrice(currency = 'USD', coin = 'BTC', date = '2017-01-01')
 export function getHistoryData(currency = 'USD', coin = 'BTC', range = 'day') {
   return getJSON(`${HISTORY_API_URL}/${coin}-${currency}/${range}`);
 }
-
 export function getCurrencyData() {
   return getJSON(CURRENCY_API_URL);
+}
+export function getExchangeRate(currency) {
+  return getJSON(`${EXCHANGE_API_URL}/${currency}`)
 }

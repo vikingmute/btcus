@@ -38,7 +38,7 @@ render(
           <ul>
             <li>Hand coded by <a href="https://github.com/vikingmute/btcus">vikingmute</a></li>
             <li>
-              Powered by <a href="https://www.cryptocompare.com">Cryptocompare</a>
+              Powered by <a href="https://www.cryptocompare.com">Cryptocompare</a> &  <a href="http://fixer.io/">Fixer</a>
             </li>
             <li>
               Icons by <a href="http://www.flaticon.com/packs/countrys-flags">Freepik</a> & <a href="https://github.com/cjdowner/cryptocurrency-icons">cryptocurrency-icons</a>

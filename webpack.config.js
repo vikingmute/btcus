@@ -5,7 +5,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ROOT_PATH = path.resolve(__dirname);
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
-module.exports= {
+module.exports = {
   entry: {
     app: path.resolve(APP_PATH, 'app.jsx')
   },
@@ -15,8 +15,8 @@ module.exports= {
     publicPath: '/',
   },
 
-  //enable dev source map
-  devtool: 'eval-source-map',
+  // enable dev source map
+  devtool: 'inline-source-map',
   //enable dev server
   devServer: {
     historyApiFallback: true,
@@ -65,7 +65,7 @@ module.exports= {
       filename: 'index.html',
       title: 'Btc1.us | Live cryptocurrency prices',
       inject: 'body',
-      //template: './index.html'
+      template: './index.html'
     })
   ]
 }

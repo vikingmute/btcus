@@ -17,7 +17,8 @@ class Config extends React.Component {
     this.cancelChanges = this.cancelChanges.bind(this)
     this.state = {
       selectedCurrency: this.props.global.selectedCurrency,
-      selectedCoins: this.props.global.selectedCoins
+      selectedCoins: this.props.global.selectedCoins,
+      isSaving: false
     }
   }
   componentDidMount() {
@@ -49,7 +50,12 @@ class Config extends React.Component {
     const { history } = this.props
     const { selectedCoins, selectedCurrency } = this.state
     this.props.actions.saveGlobalSettings(selectedCoins, selectedCurrency)
-    history.push('/')
+    this.setState({
+      isSaving: true
+    })
+    this.props.actions.fetchExchange(selectedCurrency.currency).then(() => {
+      history.push('/')
+    })
   }
   cancelChanges() {
     const { history } = this.props
@@ -69,13 +75,14 @@ class Config extends React.Component {
     }
     const currencySelectorProp = {
       currency: this.state.selectedCurrency,
-      tagName: 'div'
+      tagName: 'div',
+      createBtn: false
     }
     const coinSelectorProp = {
       createBtn: true,
       tagName: 'li'
     }
-
+    const saveButtonText = this.state.isSaving ? 'Saving' : 'Save'
     return (
       <div className="config-component">
         <h2>Configuration</h2>
@@ -94,7 +101,7 @@ class Config extends React.Component {
           </SelectorList>     
         </div>
         <div className="save-area">
-          <button className="save" onClick={this.saveChanges}>Save</button>
+          <button className="save" onClick={this.saveChanges} disabled={this.state.isSaving}>{saveButtonText}</button>
           <button className="cancel" onClick={this.cancelChanges}>Cancel</button>
         </div>
       </div>

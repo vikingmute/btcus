@@ -13,6 +13,7 @@ class Selector extends React.Component {
     this.state = {
       modalIsOpen: false
     }
+    this.handleClickOutside = this.handleClickOutside.bind(this)
   }
   toggleModal = () => {
     this.setState(prevState => {
@@ -22,16 +23,17 @@ class Selector extends React.Component {
     })
   }
   componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside.bind(this), true);    
+    document.addEventListener('click', this.handleClickOutside, true);    
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside.bind(this), true);
+    document.removeEventListener('click', this.handleClickOutside, true);
   }
 
   handleClickOutside(event) {
     const domNode = findDOMNode(this);
-    if (!domNode || !domNode.contains(event.target) || event.target.classList.contains('list-item')) {
+    const notClosed = ['save', 'cancel'].some(className =>  event.target.classList.contains(className))
+    if (!domNode || !domNode.contains(event.target)  || event.target.classList.contains('list-item')) {
       setTimeout(() => {
         this.setState({
           modalIsOpen: false

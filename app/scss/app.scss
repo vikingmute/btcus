@@ -101,6 +101,10 @@ footer {
   text-align: center;
   padding: 3rem 2rem;
   background: #fff;
+  .exchange-rate {
+    margin-top: 2rem;
+    font-style: italic;
+  }
   .intro {
     font-size: 1.2rem;
     font-weight: normal;
@@ -216,7 +220,7 @@ footer {
   .detail-container {
     .detail-data {
       display: flex;
-      width: 60%;
+      width: 70%;
       margin: 2rem auto;
       align-items: center;
       justify-content: space-between;
@@ -324,6 +328,10 @@ footer {
       .save {
         margin-right: 10px;
         @include styledBtn(5rem, $bblue, #fff, $bblue, $deepblue);
+      }
+      .save:disabled {
+        border: #868e96;
+        background: #868e96;
       }
       .cancel {
         margin-left: 10px;
@@ -464,10 +472,15 @@ footer {
     font-size: 14px;
   }
   .container {
-    width: 300px;
+    width: 350px;
+    padding: 2rem 1rem;
     .equal {
       display: block;
       margin: 1rem;
+    }
+    .coin-area {
+      margin-left: 0 !important;
+      flex: 0 !important;
     }
   }
   .modal-component {

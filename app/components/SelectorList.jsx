@@ -16,7 +16,7 @@ const SelectorList = (props) => {
       ? <span className="delete-icon" onClick={() => { props.onDelete(item) }}> ✕ </span>
       : ''
     return (
-      <li className="selector-item">
+      <li className="selector-item" key={item.currency}>
         <div className="item-button">
           <span className="flag-icon" style={style}></span>
           <span className="flag-text">{item.currency}</span>

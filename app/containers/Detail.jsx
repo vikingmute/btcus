@@ -15,8 +15,7 @@ class Detail extends React.Component {
   }
   componentDidMount() {
     const { fetchHistoryPrice, fetchDetailData } = this.props.actions
-    const { selectedCurrency } = this.props.state.global
-    fetchDetailData(selectedCurrency.currency, this.getSelectedCoin())
+    fetchDetailData('USD', this.getSelectedCoin())
   }
   getSelectedCoin() {
     const { coinList } = this.props.state.global
@@ -29,23 +28,24 @@ class Detail extends React.Component {
   onChangeRange(item) {
     const { fetchDetailData } = this.props.actions
     const { selectedCurrency } = this.props.state.global
-    fetchDetailData(selectedCurrency.currency, this.getSelectedCoin(), item.value)
+    fetchDetailData('USD', this.getSelectedCoin(), item.value)
   }
   render() {
     const { match, state } = this.props
     let chart = ''
     if (state.current.isLoaded) {
       const { selectedCoin, prevPrice, selectedRange } = state.current
-      const { selectedCurrency } = state.global
+      const { selectedCurrency, exchangeRate } = state.global
       const { currency, country } = selectedCoin
       const formatData = state.current.history.map(item => {
         return {
           ...item,
+          close: (item.close * exchangeRate.rate).toFixed(2) * 1,
           time: new Date(item.time * 1000).toISOString().slice(0, -5)
         }
       })
       const currentData = state.list.data[currency]
-      const changePrice = this.getPriceChange(currentData.PRICE, prevPrice)
+      const changePrice = (this.getPriceChange(currentData.PRICE, prevPrice) * exchangeRate.rate).toFixed(2)
       const changePricePercent =  this.getPriceChange(currentData.PRICE, prevPrice, true)
       const changeClass = (changePricePercent > 0 ) ? 'change-percent up-arrow' : 'change-percent down-arrow'
       const image = require(`../imgs/${currency}.png`)
@@ -60,7 +60,7 @@ class Detail extends React.Component {
               </div>
             </div>
             <div className="right-info">
-              <h3>{currentData.PRICE.toFixed(2)} {selectedCurrency.currency}</h3>
+              <h3>{(currentData.PRICE * 1 * exchangeRate.rate).toFixed(2)} {selectedCurrency.currency}</h3>
               <p className={changeClass}>{changePricePercent} %</p>
             </div>
           </div>
@@ -79,9 +79,9 @@ class Detail extends React.Component {
           </AreaChart>
           <ul>
             <li className={changeClass}><h4>1 {selectedRange} Change</h4> {changePrice} {selectedCurrency.currency}</li>
-            <li><h4>Volume 24 Hours</h4> {currentData.VOLUME24HOUR.toFixed(2)} {currency}</li>
-            <li><h4>Market Cap</h4> {currentData.MKTCAP.toFixed(2)} {selectedCurrency.currency}</li>
-            <li><h4>Supply</h4> {currentData.SUPPLY.toFixed(2)} {selectedCurrency.currency}</li>
+            <li><h4>Volume 24 Hours</h4> {(currentData.VOLUME24HOUR * 1).toFixed(2)} {currency}</li>
+            <li><h4>Market Cap</h4> {(currentData.MKTCAP * 1).toFixed(2)} {selectedCurrency.currency}</li>
+            <li><h4>Supply</h4> {(currentData.SUPPLY * 1).toFixed(2)} {selectedCurrency.currency}</li>
           </ul>
         </div>
       )
