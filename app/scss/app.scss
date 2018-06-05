@@ -160,6 +160,17 @@ footer {
         text-decoration: none;
       }
     }
+    #more-button {
+      background: $blue;
+      border-bottom: 1px solid $blue;
+      color: white;
+      font-size: 1.2rem;
+      justify-content: center;
+      &:hover {
+        background: $blue;
+        text-decoration: none;
+      }
+    }
     .item-component:first-child > a {
       border-top: 1px solid #efefef;
     }

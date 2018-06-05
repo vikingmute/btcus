@@ -28,12 +28,12 @@ export default function globalReducer(state = initialState, action) {
       const newState = {  isFetching: false, 
                           isLoaded: true, 
                           exchangeRate: { 
-                            rate: (action.data) ? action.data.rates[action.currency] : 1, 
+                            rate: (action.data) ? action.data['USD_' + action.currency] : 1, 
                             timestamp: new Date().getTime(),
                           } 
                       }
       setLocalStorage('exchangeRate', { 
-        rate: action.data ? action.data.rates[action.currency] : 1, 
+        rate: action.data ? action.data['USD_' + action.currency] : 1, 
         timestamp: new Date().getTime(),
       })
       return { ...state, ...newState }

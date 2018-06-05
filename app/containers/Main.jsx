@@ -20,8 +20,6 @@ class Main extends React.Component {
   componentDidMount() {
     const { fetchListData, fetchExchange } = this.props.actions
     const { selectedCoins, exchangeRate, selectedCurrency } = this.props.state.global
-    console.log(selectedCurrency)
-    console.log(exchangeRate)
     const keyNames = selectedCoins.map(item => item.currency)
     const oneDayTimestamp = 24 * 60 * 60 * 1000
     if (selectedCurrency.currency !== 'USD' && (new Date().getTime() - exchangeRate.timestamp > oneDayTimestamp)) {
@@ -55,6 +53,7 @@ class Main extends React.Component {
         <div className="intro">
           <span>BTC1.us</span> 
              - simple live & latest cryptocurrency prices, support <b>167</b> currencies and <b>20</b> cryptocurrencies.
+             Click each item for more details.
         </div>
         {content}
       </div>
